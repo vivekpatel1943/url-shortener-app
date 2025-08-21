@@ -22,3 +22,8 @@ model Url {
   expired Boolean @default(false) 
 }
 
+model Counter{
+  id Int @id  @default(1)
+  value Int @default(0)
+}
+

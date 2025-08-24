@@ -47,12 +47,15 @@ export const encodeUrl = async (req: Request, res: Response): Promise<any> => {
 
         const { url } = parsedPayload.data;
 
+        console.log("url",url)
+
         // check if the url and it's encoding is already available or not , 
         //  we will be using prisma.url.findUnique();
         
         const inputUrl = await prisma.url.findUnique({
             where : {
                 originalUrl : url
+               
             }
         })
 
@@ -65,6 +68,25 @@ export const encodeUrl = async (req: Request, res: Response): Promise<any> => {
         const exists = !!inputUrl;
 
         console.log("exists",exists)
+
+        const deleteExpiredUrl = async () => {
+            const createdAt = new Date(`${inputUrl?.createdAt}`) ;
+            const presentDate = new Date();
+            console.log("createdAt",createdAt)
+            console.log("presentDate",typeof(presentDate))
+            const diff = Math.floor((presentDate.getTime() - createdAt.getTime())/(1000*60*60*24*30));
+            console.log("diff",diff)
+
+            if(diff > 3){
+                await prisma.url.delete({
+                    where : {
+                        originalUrl : url
+                    }
+                })
+            }
+        }
+
+        deleteExpiredUrl();
 
         if(exists){
             const outputUrl = inputUrl.newUrl;

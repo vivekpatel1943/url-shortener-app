@@ -173,15 +173,12 @@ export const encodeUrl = async (req: Request, res: Response): Promise<any> => {
 } 
 
 export const redirect = async (req:Request,res:Response) : Promise<any> => {
-    try{
-        //  we will make the user to pass the hashed url or the alias as query params , 
+    try{     
 
-        console.log("request params", req.query)
-
-        const parsedPayload = redirectInput.safeParse(req.query);
+        const parsedPayload = redirectInput.safeParse(req.body);
 
         if(!parsedPayload.success){
-            return res.status(400).json({msg:"invalid input.."});
+            return res.status(400).json({error:parsedPayload.error});
         }
 
         console.log("parsedPaylod",parsedPayload)

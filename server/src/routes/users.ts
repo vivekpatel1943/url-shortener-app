@@ -6,7 +6,7 @@ const router = Router();
 router.use(express.json())
 
 router.post('/postUrl',encodeUrl);
-router.post('/redirect',redirect)
+router.get('/:short',redirect)
 
 
 export default router;

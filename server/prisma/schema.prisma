@@ -15,11 +15,10 @@ datasource db {
 
 //both originalUrl and newUrl shall be unique and  we take the url and shorten it with the help of some algorithm and save the mapping in the database
 model Url {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
   originalUrl String @unique
   newUrl String @unique
   createdAt DateTime @default(now())
-  expired Boolean @default(false) 
 }
 
 model Counter{

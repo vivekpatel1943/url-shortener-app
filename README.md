@@ -28,7 +28,7 @@ This value is stored in the database along with the original URL.
 
 ✅ 4. Redirection
 When a user visits:
-"https://your-domain.com/<shortCode>"
+(https://your-domain.com/<shortCode>)
 
 The backend:
 1. Looks up the short code in the database.

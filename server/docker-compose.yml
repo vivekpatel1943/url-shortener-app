@@ -1,0 +1,23 @@
+version: '3.8'
+services: 
+  postgres_db:
+    "image": "postgres"
+    "container_name": "my_postgres_container"
+    environment:
+      POSTGRES_USER: ${postgres_user}
+      POSTGRES_PASSWORD: ${postgres_password}
+      POSTGRES_DB: ${postgres_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - "postgres_data:/var/lib/postgresql/data" 
+  backend: 
+    image: "url_shortener_api"
+    container_name: backend_app_container
+    ports:
+      - 3005:3005
+    environment: 
+      DATABASE_URL: ${DATABASE_URL}
+volumes:
+  postgres_data:
+

@@ -135,7 +135,7 @@ export const encodeUrl = async (req: Request, res: Response) => {
 
         const finalEncoding = hashedUrl + encodedBinaryCounter;
 
-        const finalEncodedUrl = `http://localhost:3005/api/v1/${finalEncoding}`;
+        const finalEncodedUrl = `http://3.111.246.79:3005/api/v1/${finalEncoding}`;
 
         const newUrl = await prisma.url.create({
             data: {

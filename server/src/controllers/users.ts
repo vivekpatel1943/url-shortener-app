@@ -162,7 +162,7 @@ export const redirect = async (req: Request, res: Response) => {
 
         const originalURL = await prisma.url.findUnique({
             where: {
-                newUrl: `http://localhost:3005/api/v1/${short}`
+                newUrl: `http://3.111.246.79:3005/api/v1/${short}`
             }
         })
 
